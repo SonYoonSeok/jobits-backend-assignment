@@ -1,6 +1,7 @@
 package jobits.assignment.domain.entity;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +16,6 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "postNumber" , nullable = false)
     private Long postNumber;
 
     @Column(length = 45, name = "postTitle", nullable = false)
@@ -29,8 +29,15 @@ public class Post {
 
     @OneToOne
     @JoinColumn(name = "User_userID", nullable = false)
-    private User userIndex;
+    private User userID;
 
     @Column(name = "delete_YN", nullable = false)
     private String delete_YN = "N";
+
+    @Builder
+    public Post(String postTitle, String postText, Blob postImage) {
+        this.postTitle = postTitle;
+        this.postText = postText;
+        this.postImage = postImage;
+    }
 }
