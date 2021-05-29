@@ -1,5 +1,6 @@
 package jobits.assignment.domain.entity;
 
+import jobits.assignment.domain.repository.AdminRepository;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,19 +26,19 @@ public class Post {
     private String postText;
 
     @Column(name = "postImage")
-    private Blob postImage;
+    private Blob postImage = null;
 
-    @OneToOne
-    @JoinColumn(name = "User_userID", nullable = false)
-    private User userID;
+    @Column(name = "adminID", nullable = false)
+    private String adminID;
 
     @Column(name = "delete_YN", nullable = false)
     private String delete_YN = "N";
 
     @Builder
-    public Post(String postTitle, String postText, Blob postImage) {
+    public Post(String postTitle, String postText, Blob postImage, String adminID) {
         this.postTitle = postTitle;
         this.postText = postText;
         this.postImage = postImage;
+        this.adminID = adminID;
     }
 }
