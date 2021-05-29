@@ -1,6 +1,7 @@
 package jobits.assignment.domain.entity;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -21,4 +22,11 @@ public class User {
 
     @Column(length = 20, name = "userPassword", nullable = false)
     private String userPassword;
+
+    @Builder
+    public User(String userID, String userPassword) {
+        this.userID = userID;
+        this.userPassword = userPassword;
+    }
+
 }
